@@ -414,7 +414,7 @@ Router.prototype.join = function(boxes, start) {
 			content.push(boxBody.content);
 		} else {
 			// 这里存在容器
-			prefix.push(boxBody.prefix, '<div id="DedoCtr' + (start + index + 1) + '">');
+			prefix.push(boxBody.prefix, '<div id="BigboxCtr' + (start + index + 1) + '">');
 			postfix.push(boxBody.postfix, '</div>');
 		}
 	});
