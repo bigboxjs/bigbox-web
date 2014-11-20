@@ -6,5 +6,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/bigboxjs/bigbox-web"
+  },
+  "dependencies": {
+    "asyncrequire": "0.0.1"
   }
 }

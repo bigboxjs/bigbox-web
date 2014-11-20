@@ -5,7 +5,7 @@
 var PathUtil = require("path");
 var UrlUtil = require("url");
 var Callbacks = require("./util/callbacks");
-var $require = require("./util/$require");
+var $require = require("asyncrequire");
 
 /**
  * 路由控制类
@@ -313,10 +313,9 @@ Router.prototype.controllers = function(paths, callback) {
 	// 循环所有的box id，拿到
 	var root = this._config.root;
 	paths.forEach(function(path, index) {
-		var required = callbacks.add(function(module) {
+		$require(root + path.pathname, callbacks.add(function(module) {
 			controllers[index] = module;
-		});
-		$require.async(root + path.pathname, required);
+		}));
 	});
 
 	return controllers;
@@ -597,16 +596,14 @@ Router.prototype.render = function(path, data, callback) {
 	});
 
 	// 请求viewEngine
-	var viewEngineReq = callbacks.add(function(result) {
+	$require(this._config.view[extName.substr(1)], callbacks.add(function(result) {
 		viewEngine = result;
-	});
-	$require.async(this._config.view[extName.substr(1)], viewEngineReq);
+	}));
 
 	// 请求模板对象
-	var resultsReq = callbacks.add(function(result) {
+	$require(realPath, callbacks.add(function(result) {
 		results = result;
-	});
-	$require.async(realPath, resultsReq);
+	}));
 };
 
 /**
