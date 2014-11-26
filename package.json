@@ -1,6 +1,6 @@
 {
   "name": "bigbox-web",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "description": "bigbox-web是服务器端进行Web请求处理的核心",
   "repository": {
